@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { authSuccess } from '@/Store/Reducers/authSlice';
 import { isValidToken } from '../utils';
-import { error } from '@/Store/Reducers/loaderSlice';
+import { error, loaderStart, loaderSuccess } from '@/Store/Reducers/loaderSlice';
 import ErrorPopup from '../ErrorPopUp';
 import Loader from '../Loader';
 import Login from '@/pages/login';
@@ -16,8 +16,10 @@ const ParentComponent = ({ children }) => {
         const validateToken = isValidToken(parseToken);
         if (validateToken.data) {
           dispatch(authSuccess());
+          dispatch(loaderSuccess())
         } else {
           dispatch(error(validateToken.error));
+          dispatch(loaderStart())
           // dispatch(logout());
         }
       }

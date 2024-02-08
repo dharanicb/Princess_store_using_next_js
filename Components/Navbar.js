@@ -1,12 +1,11 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { jwtDecode } from 'jwt-decode'
 import { authFail } from '@/Store/Reducers/authSlice'
-import Loader from './Loader';
-import ErrorPopup from './ErrorPopUp';
 import { useRouter } from 'next/router';
+import { loaderStart, loaderSuccess } from '@/Store/Reducers/loaderSlice';
 
 let userDetails = "";
 
@@ -30,6 +29,7 @@ const Navbar = () => {
         localStorage.removeItem("tokenKey");
         dispatch(authFail());
         router.push("/login")
+        dispatch(loaderSuccess())
     };
 
     return (
@@ -39,10 +39,10 @@ const Navbar = () => {
                 <Link href={"/"} className='cursur-pointer'><img src='https://i.pinimg.com/736x/3a/ef/ac/3aefac9c181eb44137cd95403b317e66.jpg' className={'w-[80px] m-5 h-[60px] bg-transparent rounded-[100%]'} /></Link>
                 </li>
                 <li className='m-3 flex self-center'>
-                    <Link href="/" className='mr-6'>Home</Link>
-                    <Link href="/about" className='mr-6'>About Us</Link>
-                    <Link href="/products" className='mr-6'>Products</Link>
-                    <Link href="/cart" className='mr-6'>Cart</Link>
+                    <Link href="/" className='mr-6' onClick={()=>dispatch(loaderStart())}>Home</Link>
+                    <Link href="/about" className='mr-6' onClick={()=>dispatch(loaderStart())}>About Us</Link>
+                    <Link href="/products" className='mr-6' onClick={()=>dispatch(loaderStart())}>Products</Link>
+                    <Link href="/cart" className='mr-6' onClick={()=>dispatch(loaderStart())}>Cart</Link>
                 </li>
                 <li className='m-2 mr-3 self-center text-gray-900'>
                     <div className='relative group'>

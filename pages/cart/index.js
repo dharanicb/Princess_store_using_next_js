@@ -1,4 +1,5 @@
 import CartItems from '@/Components/CartItems.js'
+import { loaderSuccess } from '@/Store/Reducers/loaderSlice'
 import { emptyCart } from '@/Store/Reducers/productSlice'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -8,6 +9,8 @@ const Cart = () => {
   const data = useSelector((state) => state.cart.items)
   const dispatch = useDispatch()
   const router = useRouter();
+
+dispatch(loaderSuccess())
 
   const handleOrder = () => {
    router.push("/order")

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { addItem } from '@/Store/Reducers/productSlice'
+import { loaderStart } from '@/Store/Reducers/loaderSlice'
 
 const ProductItems = ({ products }) => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const ProductItems = ({ products }) => {
   const handleCart = () => {
     router.push(`/cart`)
     dispatch(addItem({products}))
+    dispatch(loaderStart())
   }
 
 

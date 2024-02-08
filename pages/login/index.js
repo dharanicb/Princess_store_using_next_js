@@ -2,7 +2,7 @@
 import ErrorPopup from "@/Components/ErrorPopUp";
 import { isValidToken } from "@/Components/utils";
 import { authFail, authSuccess } from "@/Store/Reducers/authSlice";
-import { error } from "@/Store/Reducers/loaderSlice";
+import { error, loaderStart, loaderSuccess } from "@/Store/Reducers/loaderSlice";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,10 +24,12 @@ function Login() {
         const validateToken = isValidToken(token);
         if (validateToken.data) {
           dispatch(authSuccess());
+          dispatch(loaderSuccess())
           router.push("/")
         } else {
           dispatch(error(validateToken.error));
           dispatch(authFail());
+          
         }
       }
     };

@@ -1,6 +1,12 @@
+import { loaderSuccess } from '@/Store/Reducers/loaderSlice'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 const AboutPage = () => {
+
+const dispatch = useDispatch()
+dispatch(loaderSuccess())
+
     return (
         <div className='flex h-screen flex-col justify-center'>
             <div className='text-gray-900'>

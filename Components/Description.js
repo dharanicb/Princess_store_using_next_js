@@ -4,6 +4,7 @@ import { RigthArrowButton } from "./Icons";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/Store/Reducers/productSlice";
+import { loaderStart } from "@/Store/Reducers/loaderSlice";
 
 
 const Description = ({ activeImage, clickNext, clickPrev , products }) => {
@@ -14,6 +15,7 @@ const Description = ({ activeImage, clickNext, clickPrev , products }) => {
 const handleOrder = () => {
   router.push(`/cart`)
 dispatch(addItem({products}))
+dispatch(loaderStart())
 } 
 
 

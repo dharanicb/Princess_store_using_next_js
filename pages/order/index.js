@@ -1,9 +1,14 @@
+import { loaderSuccess } from '@/Store/Reducers/loaderSlice';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { useDispatch } from 'react-redux';
 
 const OrderPlaced = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+dispatch(loaderSuccess())
+
   return (
     <div className="flex flex-col justify-center items-center h-screen w-full">
       <img
