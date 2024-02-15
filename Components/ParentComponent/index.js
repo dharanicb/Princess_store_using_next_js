@@ -19,7 +19,7 @@ const ParentComponent = ({ children }) => {
           dispatch(loaderSuccess())
         } else {
           dispatch(error(validateToken.error));
-          dispatch(loaderStart())
+          // dispatch(loaderStart())
           // dispatch(logout());
         }
       }
@@ -37,9 +37,7 @@ const loader = useSelector((state) => state.loader.isLoading);
     <>
      {errorMessage && <ErrorPopup isOpen={true} errorMessage={errorMessage} />}
       {loader && <Loader />} 
-    <div className='h-screen'>   
         <main>{isAuthenticated ? children : <Login />}</main>
-    </div>
     </>
   )
 }

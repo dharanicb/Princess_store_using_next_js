@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { items: {}};
+const initialState = { items: {}, profile : [], user : {}};
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -39,8 +39,16 @@ export const cartSlice = createSlice({
         }
       }
     },
+    addUserDetails : (state , action) => {
+      state.profile = [...state.profile , { ...action.payload.formData, id: state.profile.length + 1 }];
+      console.log(state.profile , "this is profile Details");
+    },
+    addUser : (state , action) => {
+      state.user = {...action.payload.formData};
+      console.log(state.profile , "this is profile Details");
+    }
   },
 });
 
-export const { addItem, removeFromCart, emptyCart, increment, decrement } = cartSlice.actions;
+export const { addItem, removeFromCart,addUserDetails,addUser, emptyCart, increment, decrement } = cartSlice.actions;
 export default cartSlice.reducer;

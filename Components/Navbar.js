@@ -33,7 +33,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className='w-full flex justify-around text-white bg-[#6c6c9b] h-[80px] '>
+        <nav className='w-full flex justify-around text-white bg-[#6c6c9b] '>
             <ul className='w-full flex justify-between text-white bg-[#6c6c9b] h-[80px]'>
                 <li className='m-2 mr-3 self-center'>
                 <Link href={"/"} className='cursur-pointer'><img src='https://i.pinimg.com/736x/3a/ef/ac/3aefac9c181eb44137cd95403b317e66.jpg' className={'w-[80px] m-5 h-[60px] bg-transparent rounded-[100%]'} /></Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
                     </div>
                 </li>
             </ul>
-        </div>
+        </nav>
     )
 }
 

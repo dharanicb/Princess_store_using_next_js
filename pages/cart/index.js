@@ -1,5 +1,5 @@
 import CartItems from '@/Components/CartItems.js'
-import { loaderSuccess } from '@/Store/Reducers/loaderSlice'
+import { loaderStart, loaderSuccess } from '@/Store/Reducers/loaderSlice'
 import { emptyCart } from '@/Store/Reducers/productSlice'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -13,8 +13,9 @@ const Cart = () => {
 dispatch(loaderSuccess())
 
   const handleOrder = () => {
-   router.push("/order")
-   dispatch(emptyCart())
+   router.push("/user/profile")
+  //  dispatch(emptyCart())
+   dispatch(loaderStart())
   }
 
 
@@ -38,7 +39,7 @@ dispatch(loaderSuccess())
           ))}
         </ul>
         <div className='text-right self-end m-5'>
-          {data && <div className='flex justify-end'>
+          {Object.keys(data).length > 0 && <div className='flex justify-end'>
             <h1 className='self-center mr-6 text-[18px]'><strong>Total Price : {sum && sum}</strong></h1>
             <button className="bg-[#6c6c9b] w-[160px] text-white uppercase px-4 py-2 rounded-md my-10" onClick={handleOrder}>
               Place Order
